@@ -27,7 +27,7 @@ RUN set -ex; \
 		libjpeg-dev \
 		libmagickwand-dev \
 		libpng-dev \
-		libwebp-dev \ 
+		libwebp-dev \
         libssh2-dev \
         libtidy-dev \
 		libzip-dev \
