@@ -52,8 +52,6 @@ RUN set -ex; \
     docker-php-ext-enable tidy; \
     pecl install memcache; \
     docker-php-ext-enable memcache; \
-    pecl install ssh2-1.3.1; \
-    docker-php-ext-enable ssh2; \
     pecl install redis-5.3.7; \
     docker-php-ext-enable redis; \
 	rm -r /tmp/pear; \
