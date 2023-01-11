@@ -28,7 +28,6 @@ RUN set -ex; \
 		libmagickwand-dev \
 		libpng-dev \
 		libwebp-dev \
-        libssh2-dev \
         libtidy-dev \
 		libzip-dev \
 	; \
