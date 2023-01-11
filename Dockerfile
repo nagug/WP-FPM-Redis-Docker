@@ -28,6 +28,7 @@ RUN set -ex; \
 		libmagickwand-dev \
 		libpng-dev \
 		libwebp-dev \ 
+        libssh2-dev \
         libtidy-dev \
 		libzip-dev \
 	; \
@@ -50,8 +51,12 @@ RUN set -ex; \
 	pecl install imagick-3.7.0; \
 	docker-php-ext-enable imagick; \	
     docker-php-ext-enable tidy; \
+    pecl install memcache; \
+    docker-php-ext-enable memcache; \
+    pecl install ssh2-1.3.1; \
+    docker-php-ext-enable ssh2; \
     pecl install redis-5.3.7; \
-	docker-php-ext-enable redis; \
+    docker-php-ext-enable redis; \
 	rm -r /tmp/pear; \
 	\
 # some misbehaving extensions end up outputting to stdout 🙈 (https://github.com/docker-library/wordpress/issues/669#issuecomment-993945967)
