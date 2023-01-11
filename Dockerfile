@@ -12,7 +12,6 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
-        tidyhtml-dev \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -29,7 +28,6 @@ RUN set -ex; \
 		libmagickwand-dev \
 		libpng-dev \
 		libwebp-dev \ 
-        tidyhtml \
 		libzip-dev \
 	; \
 	\
@@ -45,11 +43,11 @@ RUN set -ex; \
 		intl \
 		mysqli \
 		zip \
-        tidy \
 	; \
 # https://pecl.php.net/package/imagick
 	pecl install imagick-3.7.0; \
 	docker-php-ext-enable imagick; \	
+    docker-php-ext-enable tidy; \
     pecl install redis-5.3.7; \
 	docker-php-ext-enable redis; \
 	rm -r /tmp/pear; \
