@@ -1,0 +1,61 @@
+version: "3"
+services:
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=supersecure
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+      - ./backup:/srv/backup
+    ports:
+      - 3306:3306
+    networks:
+      - wordpressed
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+      - ./wordpress:/var/www/html
+    ports:
+      - 8090:80
+      - 4043:443
+    networks:
+      - wordpressed
+  wordpress-php-fpm:
+    image: image location
+    volumes:
+      - ./wordpress:/var/www/html
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+    environment:
+      - WORDPRESS_DB_NAME=wpdb
+      - WORDPRESS_TABLE_PREFIX=wp_
+      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=supersecure
+      - WORDPRESS_CONFIG_EXTRA=
+           define('WP_REDIS_HOST','redis');
+           define('WP_REDIS_PORT','6379');
+           define('WP_CACHE','true');
+    links:
+      - mariadb
+    networks:
+      - wordpressed
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    volumes:
+      - ./wordpress:/var/www/html
+    networks:
+      - wordpressed
+    entrypoint: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+networks:
+  wordpressed:
+    name: wp-wordpress
+    driver: bridge
+
