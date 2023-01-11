@@ -12,6 +12,7 @@ RUN set -eux; \
 	apt-get install -y --no-install-recommends \
 # Ghostscript is required for rendering PDF previews
 		ghostscript \
+        tidyhtml-dev \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -27,7 +28,8 @@ RUN set -ex; \
 		libjpeg-dev \
 		libmagickwand-dev \
 		libpng-dev \
-		libwebp-dev \
+		libwebp-dev \ 
+        tidyhtml \
 		libzip-dev \
 	; \
 	\
