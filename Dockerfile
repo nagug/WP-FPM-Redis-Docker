@@ -28,6 +28,7 @@ RUN set -ex; \
 		libmagickwand-dev \
 		libpng-dev \
 		libwebp-dev \ 
+        libtidy-dev \
 		libzip-dev \
 	; \
 	\
@@ -42,6 +43,7 @@ RUN set -ex; \
 		gd \
 		intl \
 		mysqli \
+        tidy \
 		zip \
 	; \
 # https://pecl.php.net/package/imagick
