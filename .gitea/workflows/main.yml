@@ -2,8 +2,7 @@ name: Build & Push
 
 "on":
   push:
-    tags:
-      branches: [master, main]
+    branches: [master, main]
 
 jobs:
   build-and-push-image:
@@ -14,7 +13,7 @@ jobs:
     steps:
       -
         name: Checkout repository
-        uses: https://github.com/actions/checkout@v3
+        uses: https://github.com/actions/checkout@v2
         with:
           fetch-depth: 0
 
